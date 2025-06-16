@@ -1,0 +1,79 @@
+import java.util.Scanner;
+
+public class StackLinkedList {
+
+    // Node class (inner class)
+    static class Node {
+        int data;
+        Node next;
+    }
+
+    // Top of the stack
+    static Node top = null;
+
+    // Push operation
+    public static void push(int value) {
+        Node newNode = new Node();
+        newNode.data = value;
+        newNode.next = top;
+        top = newNode;
+        System.out.println("Pushed: " + value);
+    }
+
+    // Pop operation
+    public static void pop() {
+        if (top == null) {
+            System.out.println("Stack is empty.");
+        } else {
+            System.out.println("Popped: " + top.data);
+            top = top.next;
+        }
+    }
+
+    // Display operation
+    public static void display() {
+        if (top == null) {
+            System.out.println("Stack is empty.");
+            return;
+        }
+
+        System.out.print("Stack from top to bottom: ");
+        Node temp = top;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+
+    // Main method with string input
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Take comma-separated input
+        System.out.print("Enter stack elements (comma-separated): ");
+        String input = scanner.nextLine();
+
+        // Split and push each value
+        String[] elements = input.split(",");
+        for (String element : elements) {
+            try {
+                int num = Integer.parseInt(element.trim());
+                push(num);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid number: " + element);
+            }
+        }
+
+        // Display stack
+        display();
+
+        // Pop one element
+        pop();
+
+        // Display again
+        display();
+
+        scanner.close();
+    }
+}

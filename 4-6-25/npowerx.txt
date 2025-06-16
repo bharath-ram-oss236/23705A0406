@@ -1,0 +1,13 @@
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(npowerx(6, 2));  // Output should be 32
+    }
+
+    public static int npowerx(int n, int x) {
+        if (x == 0) {
+            return 1;
+        }
+        int val = n * npowerx(n, x- 1);  // Recursive call
+        return val;
+    }
+}

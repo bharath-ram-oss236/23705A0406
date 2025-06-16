@@ -1,0 +1,48 @@
+import java.util.*;
+
+public class MinOperationsToOne {
+    public static int minOperations(int n) {
+        Queue<int[]> queue = new LinkedList<>();
+        Set<Integer> visited = new HashSet<>();
+
+        queue.offer(new int[]{n, 0}); // {current number, operations count}
+
+        while (!queue.isEmpty()) {
+            int[] current = queue.poll();
+            int number = current[0];
+            int steps = current[1];
+
+            if (number == 1) {
+                return steps;
+            }
+
+            if (visited.contains(number)) {
+                continue;
+            }
+            visited.add(number);
+
+            // Operation 1: Subtract 1
+            queue.offer(new int[]{number - 1, steps + 1});
+
+            // Operation 2: Divide by any proper factor
+            for (int i = 2; i * i <= number; i++) {
+                if (number % i == 0) {
+                    queue.offer(new int[]{number / i, steps + 1});
+                    if (i != number / i) {
+                        queue.offer(new int[]{i, steps + 1}); // include the other factor
+                    }
+                }
+            }
+        }
+
+        return -1; // Should never reach here for n >= 1
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter n: ");
+        int n = sc.nextInt();
+        int result = minOperations(n);
+        System.out.println("Minimum operations to reduce " + n + " to 1: " + result);
+    }
+}

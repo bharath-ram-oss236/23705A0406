@@ -1,0 +1,31 @@
+public class DoubleReverseCheck {
+    public static void main(String[] args) {
+        int originalNumber = 4521;
+
+        int firstReverse = reverseNumber(originalNumber);
+        int secondReverse = reverseNumber(firstReverse);
+
+        System.out.println("Original Number: " + originalNumber);
+        System.out.println("First Reverse: " + firstReverse);
+        System.out.println("Second Reverse: " + secondReverse);
+
+        if (originalNumber == secondReverse) {
+            System.out.println("Result: Good Number");
+        } else {
+            System.out.println("Result: Bad Number");
+        }
+    }
+
+    // Method to reverse a number
+    public static int reverseNumber(int num) {
+        int reversed = 0;
+
+        while (num != 0) {
+            int digit = num % 10;
+            reversed = reversed * 10 + digit;
+            num /= 10;
+        }
+
+        return reversed;
+    }
+}

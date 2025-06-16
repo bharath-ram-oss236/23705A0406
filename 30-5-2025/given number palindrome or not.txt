@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class PalindromeCheck {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt user for input
+        System.out.println("Enter numbers separated by spaces:");
+        String[] input = scanner.nextLine().split(" ");
+
+        int[] numbers = new int[input.length];
+        for (int i = 0; i < input.length; i++) {
+            numbers[i] = Integer.parseInt(input[i]);
+        }
+
+        if (isPalindrome(numbers)) {
+            System.out.println("The sequence is a palindrome.");
+        } else {
+            System.out.println("The sequence is not a palindrome.");
+        }
+
+        scanner.close();
+    }
+
+    public static boolean isPalindrome(int[] array) {
+        int start = 0;
+        int end = array.length - 1;
+
+        while (start < end) {
+            if (array[start] != array[end]) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+
+        return true;
+    }
+}

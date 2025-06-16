@@ -1,0 +1,100 @@
+public class LinkedListDemo {
+
+    static class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    static class LinkedList {
+        Node head = null;
+
+        // Insert at the end
+        void insertEnd(int data) {
+            Node newNode = new Node(data);
+            if (head == null) {
+                head = newNode;
+                return;
+            }
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+        }
+
+        // Delete from beginning
+        int deleteBEG() {
+            if (head == null) {
+                System.out.println("List is empty. Nothing to delete at beginning.");
+                return -1;
+            }
+            int removedEle = head.data;
+            head = head.next;
+            return removedEle;
+        }
+
+        // Delete from end
+        int deleteEnd() {
+            if (head == null) {
+                System.out.println("List is empty. Nothing to delete at end.");
+                return -1;
+            }
+
+            if (head.next == null) {
+                int removedEle = head.data;
+                head = null;
+                return removedEle;
+            }
+
+            Node temp = head;
+            while (temp.next.next != null) {
+                temp = temp.next;
+            }
+
+            int removedEle = temp.next.data;
+            temp.next = null;
+            return removedEle;
+        }
+
+        // Display the list
+        void display() {
+            if (head == null) {
+                System.out.println("List is empty.");
+                return;
+            }
+
+            Node temp = head;
+            while (temp != null) {
+                System.out.print(temp.data + " -> ");
+                temp = temp.next;
+            }
+            System.out.println("null");
+        }
+    }
+
+    // Main method
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+
+        // Insert elements
+        list.insertEnd(10);
+        list.insertEnd(20);
+        list.insertEnd(30);
+        list.display();  // Output: 10 -> 20 -> 30 -> null
+
+        // Delete from beginning
+        int begDel = list.deleteBEG();
+        System.out.println("Deleted from beginning: " + begDel);
+        list.display();  // Output: 20 -> 30 -> null
+
+        // Delete from end
+        int endDel = list.deleteEnd();
+        System.out.println("Deleted from end: " + endDel);
+        list.display();  // Output: 20 -> null
+    }
+}

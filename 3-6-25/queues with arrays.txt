@@ -1,0 +1,63 @@
+public class QueueWithArray {
+    static final int MAX = 100;
+    int front, rear;
+    int[] queue = new int[MAX];
+
+    // Constructor
+    QueueWithArray() {
+        front = 0;
+        rear = 0;
+    }
+
+    // Enqueue (insert) operation
+    void enqueue(int value) {
+        if (rear >= MAX) {
+            System.out.println("Queue Overflow");
+        } else {
+            queue[rear++] = value;
+            System.out.println("Enqueued: " + value);
+        }
+    }
+
+    // Dequeue (remove) operation
+    void dequeue() {
+        if (front == rear) {
+            System.out.println("Queue Underflow");
+        } else {
+            System.out.println("Dequeued: " + queue[front++]);
+        }
+    }
+
+    // Display operation
+    void display() {
+        if (front == rear) {
+            System.out.println("Queue is empty.");
+        } else {
+            System.out.print("Queue from front to rear: ");
+            for (int i = front; i < rear; i++) {
+                System.out.print(queue[i] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    // Main method
+    public static void main(String[] args) {
+        QueueWithArray q = new QueueWithArray();
+
+        // Input data
+        int[] data = {20, 10, 40, 30, 50, 20};
+
+        // Enqueue all elements
+        for (int value : data) {
+            q.enqueue(value);
+        }
+
+        // Display the queue
+        q.display();
+
+        // Dequeue one element and display again
+        q.dequeue();
+        q.display();
+    }
+}

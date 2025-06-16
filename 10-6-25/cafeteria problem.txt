@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class JuiceMachineOptimizer {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter total number of glasses required: ");
+        int n = sc.nextInt();
+
+        int minCost = Integer.MAX_VALUE;
+
+        
+        for (int a = 0; a <= n / 10; a++) {
+            int remaining = n - (a * 10);
+
+            
+            if (remaining % 2 == 0) {
+                int b = remaining / 2;
+
+                int cost = (a * 15) + (b * 5);
+
+                if (cost <= 50) {
+                    minCost = Math.min(minCost, cost);
+                }
+            }
+        }
+
+        if (minCost == Integer.MAX_VALUE) {
+            System.out.println("Not possible to make " + n + " glasses within 50 Rs.");
+        } else {
+            System.out.println("Minimum cost to make " + n + " glasses: Rs " + minCost);
+        }
+    }
+}

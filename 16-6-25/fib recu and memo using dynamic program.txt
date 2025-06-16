@@ -1,0 +1,32 @@
+public class Main {
+    // Simple recursive Fibonacci (inefficient for large n)
+    public static long fib(long n) {
+        if (n == 0 || n == 1) {
+            return n;
+        }
+        return fib(n - 1) + fib(n - 2);
+    }
+
+    // Memoized version (efficient)
+    public static int fibMemoization(int n, int[] memo) {
+        if (n == 0 || n == 1) {
+            return n;
+        }
+        if (memo[n] != 0) {
+            return memo[n];
+        }
+        memo[n] = fibMemoization(n - 1, memo) + fibMemoization(n - 2, memo);
+        return memo[n];
+    }
+
+    public static void main(String[] args) {
+        int n = 10;
+
+        // Test basic recursion
+        System.out.println("Recursive Fibonacci of " + n + ": " + fib(n));
+
+        // Test memoization
+        int[] memo = new int[n + 1];
+        System.out.println("Memoized Fibonacci of " + n + ": " + fibMemoization(n, memo));
+    }
+}

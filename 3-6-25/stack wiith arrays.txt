@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+public class StackWithArray {
+    static final int MAX = 100; // Maximum size of stack
+    int top;
+    int[] stack = new int[MAX];
+
+    // Constructor
+    StackWithArray() {
+        top = -1;
+    }
+
+    // Push method
+    void push(int value) {
+        if (top >= MAX - 1) {
+            System.out.println("Stack Overflow");
+        } else {
+            stack[++top] = value;
+            System.out.println("Pushed: " + value);
+        }
+    }
+
+    // Pop method
+    void pop() {
+        if (top < 0) {
+            System.out.println("Stack Underflow");
+        } else {
+            System.out.println("Popped: " + stack[top--]);
+        }
+    }
+
+    // Display method
+    void display() {
+        if (top < 0) {
+            System.out.println("Stack is empty.");
+        } else {
+            System.out.print("Stack from top to bottom: ");
+            for (int i = top; i >= 0; i--) {
+                System.out.print(stack[i] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    // Main method
+    public static void main(String[] args) {
+        StackWithArray stack = new StackWithArray();
+
+        // Push elements onto the stack
+        int[] data = {20, 10, 40, 30, 50, 20};
+        for (int value : data) {
+            stack.push(value);
+        }
+
+        // Display stack
+        stack.display();
+
+        // Pop one element
+        stack.pop();
+
+        // Display again
+        stack.display();
+    }
+}

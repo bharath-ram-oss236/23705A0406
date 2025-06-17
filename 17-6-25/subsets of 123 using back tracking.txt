@@ -1,0 +1,24 @@
+import java.util.ArrayList;
+
+public class SubsetGenerator {
+
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 3};
+        generateCombinations(nums, 0, new ArrayList<>());
+    }
+
+    public static void generateCombinations(int[] nums, int index, ArrayList<Integer> result) {
+        if (index == nums.length) {
+            System.out.println(result);
+            return;
+        }
+
+        // Include current element
+        result.add(nums[index]);
+        generateCombinations(nums, index + 1, result);
+
+        // Exclude current element (backtrack)
+        result.remove(result.size() - 1);
+        generateCombinations(nums, index + 1, result);
+    }
+}
